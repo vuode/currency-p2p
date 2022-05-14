@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Fiat } from '../common/types';
+import { AdsFiat } from '../common/types';
 import { payTypesURL } from '../common/vars';
 
 export type PayType = {
@@ -17,7 +17,9 @@ type PayTypesResponse = {
   };
 };
 
-export const loadPayTypes = async (fiat: Fiat): Promise<PayType[] | null> => {
+export const loadPayTypes = async (
+  fiat: AdsFiat,
+): Promise<PayType[] | null> => {
   const response = await axios.post<PayTypesResponse>(payTypesURL, {
     fiat,
   });

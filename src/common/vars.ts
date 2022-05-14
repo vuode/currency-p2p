@@ -4,3 +4,4 @@ export const payTypesURL =
 export const adsURL = CORSProxy + process.env.REACT_APP_ADS_URL ?? '';
 export const cardSellURL =
   CORSProxy + process.env.REACT_APP_CARD_SELL_URL ?? '';
+export const cardBuylURL = CORSProxy + process.env.REACT_APP_CARD_BUY_URL ?? '';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Fiat, TradeType } from '../common/types';
+import { AdsFiat, TradeType } from '../common/types';
 import { adsURL } from '../common/vars';
 
 export type Ad = {
@@ -10,6 +10,13 @@ export type Ad = {
   nickname: string;
   orderCount: number;
   finishRate: number;
+};
+
+export type AdsGetConfig = {
+  tradeType: TradeType;
+  fiat: AdsFiat;
+  payType: string;
+  amount: string | null;
 };
 
 type AdsResponse = {
@@ -27,12 +34,12 @@ type AdsResponse = {
   }[];
 };
 
-export const loadAds = async (
-  tradeType: TradeType,
-  fiat: Fiat,
-  payType: string | null,
-  amount: string | null,
-): Promise<Ad[] | null> => {
+export const loadAds = async ({
+  tradeType,
+  fiat,
+  payType,
+  amount,
+}: AdsGetConfig): Promise<Ad[] | null> => {
   const response = await axios.post<AdsResponse>(adsURL, {
     page: 1,
     rows: 10,
